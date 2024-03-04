@@ -7,7 +7,6 @@ export default function handler(req, res) {
     }
   
     const authHeader = req.headers.authorization;
-    console.log(authHeader);
   
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return res.status(401).json({ error: 'Invalid token' });
@@ -16,11 +15,8 @@ export default function handler(req, res) {
     const token = authHeader.split(' ')[1];
   
     try {
-      // Verify the JWT token
       const decoded = jwt.verify(token, secretKey);
-      console.log(decoded);
       const currentTime = Math.floor(Date.now() / 1000);
-      console.log(currentTime);
       if (decoded.exp < currentTime) {
         res.json({message: 'Expired'});
       } else {

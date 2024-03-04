@@ -47,7 +47,6 @@ function HomePage() {
       });
 
       let token = await authResponse.json();
-      console.log(token);
       sessionStorage.setItem(address, token.token);
 
       window.location.href = "./protected-route";

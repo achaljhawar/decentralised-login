@@ -15,7 +15,6 @@ const contract = new ethers.Contract(contractaddress, abi, signer);
 async function handler(req, res) {
   if (req.method === 'POST') {
     const { address } = req.body;
-    console.log(address)
     try {
         const fetchwallet = await contract.checkUserByWallet(address);
         if (!fetchwallet) {
